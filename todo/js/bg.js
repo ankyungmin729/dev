@@ -1,7 +1,7 @@
 const $icon = document.querySelector('aside>i');
 
-//랜더으로 16진수 헥사코드를 생성하는 함수
-const randomBgColorFn = () => {
+//랜덤으로 16진수 헥사코드를 생성하는 함수
+const hexColorFn = () => {
 	let R = Math.floor(Math.random() * 256);
 	let G = Math.floor(Math.random() * 256);
 	let B = Math.floor(Math.random() * 256);
@@ -14,12 +14,12 @@ const randomBgColorFn = () => {
 	G = G.length === 1 ? `0${G}` : G;
 	B = B.length === 1 ? `0${B}` : B;
 
-	const bgColor = `#${R}${G}${B}`;
-	console.log(`bgColor = ${bgColor}`);
+	const hexColor = `#${R}${G}${B}`;
+	// console.log(`hexColor = ${hexColor}`);
 
-	return bgColor;
+	return hexColor;
 };
 
 $icon.addEventListener('click', function () {
-	document.body.style.backgroundColor = randomBgColorFn();
+	document.body.style.backgroundColor = hexColorFn();
 });

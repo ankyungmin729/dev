@@ -1,72 +1,76 @@
 @charset "utf-8";
+
 $priColor: #333;
 $secColor: #d9d9d9;
 $pointColor: #a799ff;
+
 body {
 	color: $priColor;
 }
+
+$pc: 'screen and (min-width:768px)';
+
 #login {
+	display: none;
+	max-width: 393px;
+	height: 99vh;
+	margin: 0 auto;
 	text-align: center;
+	// border: 1px solid #000;
+
 	> form {
+		text-align: center;
 		> label {
 			display: block;
-			margin-top: 35vh;
+			margin: 35vh 0 30px;
 			font-weight: 600;
 			font-size: 24px;
 		}
+
 		> input {
 			background: none;
 			border: none;
 			outline: none;
-
 			display: block;
 			width: 60%;
-			margin: 30px auto 100px;
+			margin: 0 auto 100px;
 			color: $pointColor;
-			font-weight: 800;
 			font-size: 22px;
+			font-weight: 800;
 			text-align: center;
 			border-bottom: 2px solid $secColor;
 		}
+
 		> button {
 			background: none;
 			border: none;
 			outline: none;
-
 			width: 60%;
 			padding: 10px 0;
-			border-radius: 20px;
 			color: #fff;
 			font-weight: 800;
 			background-color: $pointColor;
+			border-radius: 20px;
 		}
-	} //end of form
-} //end of .login
+	}
+} //end of #login
 
 #wrap {
 	display: none;
 	width: 100%;
 	padding: 10px;
-	box-sizing: border-box;
 
 	font-size: 0.8em; //모바일에서는 em단위 사용
 	line-height: 1.25em;
 
 	box-sizing: border-box;
 }
-.expire {
-	margin-bottom: 10px;
-	color: brown;
-	font-size: 16px;
-	text-align: center;
-	cursor: pointer;
-}
 
 header {
 	display: flex;
 	flex-direction: column;
-	padding: 16px 0;
 	font-size: 20px;
+	padding: 16px 0;
 	text-align: center;
 	> .datetime {
 		> strong {
@@ -75,22 +79,25 @@ header {
 	}
 	> h1 {
 		order: 100;
+		margin: 16px 0;
 		font-size: 20px;
+		line-height: 1.5;
 	}
 	> .quote {
 		display: flex;
 		flex-direction: column-reverse; //주축설정
 		flex-wrap: wrap; //여러줄설정
 		align-content: center; //교차축정렬
-		margin: 16px 0;
+		margin-top: 24px;
 		> q {
 			display: block;
 			width: 40%;
 			line-height: 1.3;
+			// border: 1px solid #000;
 		}
 		> .author {
-			margin-top: 12px;
-			font-size: 0.8em;
+			margin-top: 8px;
+			font-size: 0.6em;
 		}
 	}
 }
@@ -102,10 +109,10 @@ main {
 		border: 2px solid $pointColor;
 		border-radius: 24px;
 	}
+
 	> section.weather {
 		text-align: center;
 		> h2 {
-			// margin-bottom: 24px;
 			.city {
 				color: #7964ff;
 			}
@@ -115,22 +122,22 @@ main {
 				width: 122px;
 			}
 			> h3 {
-				// margin-top: 16px;
 				font-size: 1.2rem;
 			}
 		} //end of .current
+
 		> article.forecast {
 			margin-top: 48px;
 			> h3 {
 				width: 60%;
+				color: #7964ff;
 				margin: 0 auto 16px;
 				text-align: left;
-				color: #7964ff;
 			}
 			> div {
 				display: flex;
 				justify-content: space-between;
-				width: 60%;
+				width: 55%;
 				margin: 0 auto;
 				> p {
 					display: flex;
@@ -139,8 +146,8 @@ main {
 						display: block;
 						width: 72px;
 						height: 72px;
-						background-size: 100% 100%;
-						//border: 1px solid #000;
+						background-position: center center;
+						background-size: cover;
 					}
 					> span {
 						line-height: 1.5;
@@ -148,33 +155,36 @@ main {
 					}
 				} //end of p
 			}
-		} //end of .forecast
+		} //end of article
 	} //end of .weather
+
 	> section.Dday {
 		position: relative;
 		> .tit {
 			display: flex;
 			align-items: center;
 			width: 90%;
+
 			margin: 0 auto;
 			padding: 10px 0 20px;
 			border-bottom: 2px solid $secColor;
 			> h2 {
-				flex: 1 1 0; //플렉스 컨테이너의 남는 공간에 대한 비율 설정
+				flex: 1 1 0; //플렉스컨테이너의 남는공간에 대한 비율설정
 				text-align: center;
 				> small {
 					color: #ccc;
 					&:hover {
 						text-decoration: underline;
-						cursor: pointer;
 					}
+					cursor: pointer;
 				}
 			}
 			> i {
+				color: $pointColor;
+				font-size: 24px;
 				cursor: pointer;
-				font-size: 20px;
 				&:hover {
-					color: $pointColor;
+					color: darken($pointColor, 10%);
 				}
 			}
 		} //end of .tit
@@ -186,12 +196,15 @@ main {
 			top: 70px;
 			width: 90%;
 			height: 48px;
-
 			background-color: #fff;
 			border: 3px solid #ccc;
 			border-bottom-width: 3px;
 			transform: translate(-50%, 0);
 			box-sizing: border-box;
+
+			@media #{$pc} {
+				height: 58px;
+			}
 
 			&.show {
 				display: block;
@@ -201,8 +214,14 @@ main {
 				&.on {
 					display: flex;
 				}
+
 				display: none;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
 				padding: 10px 0;
+				background-color: #fff;
 				> label {
 					padding: 0 10px;
 				}
@@ -224,70 +243,81 @@ main {
 			} //end of p
 		} //end of .inputBox
 
-		.list {
+		> .list {
 			overflow: auto;
 			width: 90%;
 			height: 150px;
-			margin: 24px auto 4px;
+			margin: 24px auto 0;
 			> li {
 				display: flex;
 				align-items: center;
 				margin-bottom: 24px;
+
+				&.complete {
+					text-decoration: line-through $pointColor;
+				}
+
 				&:last-child {
 					margin-bottom: 0;
 				}
+
 				> i {
-					font-size: 16px;
+					font-size: 18px;
+					color: $pointColor;
 					&:hover {
-						color: #ff2c2c;
+						color: darken($pointColor, 10%);
 					}
 				}
+
 				> h3 {
 					padding: 0 10px;
 					color: $pointColor;
 					font-size: 20px;
 				}
+
 				> p {
-					flex: 1; //flex:1 1 0; 과 같다
+					flex: 1; //flex:1 1 0; 와 같다
 					font-size: 20px;
 				}
-			}
+			} //end of li
 		} //end of .list
 	} //end of .Dday
 
 	> section.todo {
 		padding-top: 0;
-
 		> .inputBox {
 			position: relative;
 			width: 90%;
 			height: 48px;
 			margin: 0 auto;
-			//border: 1px solid #000;
+			// background-color: #fff;
+			// border: 1px solid #000;
 
 			> form {
+				&.on {
+					display: flex;
+				}
 				display: none;
 				position: absolute;
 				left: 0;
 				top: 0;
 				width: 100%;
 				padding: 10px 0;
-				&.on {
-					display: flex;
-				}
+				// background-color: #fff;
+
 				> input {
 					background: none;
 					border: none;
 					outline: none;
-
-					flex: 1 1 0; //남는 공간에 대한 비율 설정
+					flex: 1;
 					padding: 12px;
 					font-size: 16px;
 					text-align: center;
+					// background-color: #fff;
 					border-bottom: 2px solid $secColor;
 				}
 			} //end of form
-		} //end of.inputBox
+		} //end of .inputBox
 		> .list {
 			overflow: auto;
 			width: 90%;
@@ -301,6 +331,7 @@ main {
 				&:last-child {
 					margin-bottom: 0;
 				}
+
 				> i {
 					color: $pointColor;
 					font-size: 18px;
@@ -323,7 +354,7 @@ main {
 				}
 			} //end of li
 		} //end of .list
-	} //end of .todo
+	} //end of todo
 } //end of main
 
 footer {
@@ -331,13 +362,29 @@ footer {
 	text-align: center;
 }
 
-aside > i {
+aside {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	position: fixed;
 	right: 3vw;
 	top: 2vh;
 
-	&:hover {
-		color: $pointColor;
-		cursor: pointer;
+	// background-color: #fff;
+
+	> i {
+		display: block;
+		margin-bottom: 5px;
+
+		//초기화버튼
+		&.fa-trash-restore-alt {
+			font-size: 15px;
+		}
+
+		&:hover {
+			color: $pointColor;
+			cursor: pointer;
+		}
 	}
 }
